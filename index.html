@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Letter</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f8f1e4;
+            font-family: 'Georgia', serif;
+        }
+        .envelope-container {
+            position: relative;
+            width: 350px;
+            height: 250px;
+            cursor: pointer;
+        }
+        .envelope {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            border: 2px solid #aaa;
+            border-radius: 10px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .flap {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 50%;
+            background: #ddd;
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
+            transform-origin: top;
+            transition: transform 0.5s ease-in-out;
+        }
+        .envelope.open .flap {
+            transform: rotateX(180deg);
+        }
+        .letter {
+            position: absolute;
+            width: 90%;
+            height: 80%;
+            background: #fff;
+            border-radius: 5px;
+            padding: 15px;
+            text-align: left;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(100%);
+            transition: transform 0.5s ease-in-out;
+            font-size: 14px;
+            line-height: 1.6;
+            overflow-y: auto;
+        }
+        .envelope.open .letter {
+            transform: translateY(0%);
+        }
+        .click-text {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="envelope-container" onclick="toggleOpen()">
+        <div class="click-text">Click on the letter to read</div>
+        <div class="envelope">
+            <div class="flap"></div>
+            <div class="letter">
+                <p><b>Dear Bro,</b></p>
+                <p>Hallo! Ich bin ein Tech-Zauberer now, and I have decided to reply to your amazing letter in the most <i>futuristic</i> way possible—a digital letter with animations! (Because why not?)</p>
+                <p>First off, danke for your heartfelt message. It made me go <i>"Aww!"</i> and also <i>"Whoa, deep!"</i> at the same time.</p>
+                <p>Speaking of experiences, I’ve been on a new journey myself… learning German! Ja, you heard that right. So, let me impress you with my <i>wunderbar</i> skills:</p>
+                <ul>
+                    <li>"Hallo!" (See? Already fluent!)</li>
+                    <li>"Danke!" (For your letter and for existing, obviously.)</li>
+                    <li>"Ich bin ein coding machine!"</li>
+                    <li>"Oder maybe just a beginner…"</li>
+                    <li>"Tschüss procrastination, ich lerne Deutsch!"</li>
+                </ul>
+                <p>Anyway, back to your letter. The picture you sent was truly <i>wunderschön</i>, and I loved your thoughts on different phases of life.</p>
+                <p><b>Tschüss & Happy New Year 2025!</b></p>
+                <p>With love,<br>'A'</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleOpen() {
+            document.querySelector('.envelope').classList.toggle('open');
+        }
+    </script>
+</body>
+</html>
