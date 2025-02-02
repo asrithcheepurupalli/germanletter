@@ -65,45 +65,57 @@
             transition: transform 0.5s ease-in-out;
         }
 
-        .envelope.open .flap {
-            transform: rotateX(180deg);
+        .letter-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease-in-out, visibility 0.5s;
         }
 
-        .letter {
-            position: absolute;
-            width: 90%;
-            height: 80%;
+        .letter-modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .letter-content {
+            width: 60%;
+            max-width: 600px;
             background: #fff;
-            border-radius: 5px;
-            padding: 15px;
+            color: #222;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 10px 30px rgba(255, 255, 255, 0.3);
             text-align: left;
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
-            transform: translateY(100%);
-            transition: transform 0.5s ease-in-out;
-            font-size: 14px;
-            line-height: 1.6;
-            overflow-y: auto;
-            color: #222;
+            font-size: 16px;
+            line-height: 1.8;
+            position: relative;
+            animation: fadeIn 0.5s ease-in-out;
         }
 
-        .envelope.open .letter {
-            transform: translateY(0%);
-        }
-
-        .click-text {
+        .close-btn {
             position: absolute;
-            top: -35px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(255, 255, 255, 0.9);
-            color: #222;
-            padding: 8px 15px;
-            border-radius: 8px;
-            font-size: 13px;
+            top: 10px;
+            right: 15px;
+            background: #222;
+            color: #fff;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 14px;
             font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .close-btn:hover {
+            background: #555;
         }
 
         @keyframes fadeIn {
@@ -113,33 +125,40 @@
     </style>
 </head>
 <body>
-    <div class="envelope-container" onclick="toggleOpen()">
-        
+    <div class="envelope-container" onclick="openLetter()">
         <div class="envelope">
             <div class="flap"></div>
-            <div class="letter">
-                <p><b>Dear Bro,</b></p>
-                <p>Hallo! Ich bin ein Tech-Zauberer now, and I have decided to reply to your amazing letter in the most <i>futuristic</i> way possible—a digital letter with animations! (Because why not?)</p>
-                <p>First off, danke for your heartfelt message. It made me go <i>"Aww!"</i> and also <i>"Whoa, deep!"</i> at the same time.</p>
-                <p>Speaking of experiences, I’ve been on a new journey myself… learning German! Ja, you heard that right. So, let me impress you with my <i>wunderbar</i> skills:</p>
-                <ul>
-                    <li>"Hallo!" (See? Already fluent!)</li>
-                    <li>"Danke!" (For your letter and for existing, obviously.)</li>
-                    
-                    <li>Bitte, don’t laugh at my accent when we talk!</li>
-		            <li>Und ja, I will keep learning more.</li>
-                    <li>"Tschüss procrastination, ich lerne Deutsch!"</li>
-                </ul>
-                <p>Anyway, back to your letter. The picture you sent was truly <i>wunderschön!</i> It was awesome seeing you in action while we were shooting our film’s intro video in India. That was such a fun experience, and I’m glad we got to create something cool together!.</p>
-                <p><b>Tschüss & Happy New Year 2025!</b></p>
-                <p>With love,<br>'A'</p>
-            </div>
+        </div>
+    </div>
+
+    <!-- Full-screen Letter Modal -->
+    <div class="letter-modal" id="letterModal">
+        <div class="letter-content">
+            <button class="close-btn" onclick="closeLetter()">Close ✖</button>
+            <p><b>Dear Bro,</b></p>
+            <p>Hallo! Ich bin ein Tech-Zauberer now, and I have decided to reply to your amazing letter in the most <i>futuristic</i> way possible—a digital letter with animations! (Because why not?)</p>
+            <p>First off, danke for your heartfelt message. It made me go <i>"Aww!"</i> and also <i>"Whoa, deep!"</i> at the same time.</p>
+            <p>Speaking of experiences, I’ve been on a new journey myself… learning German! Ja, you heard that right. So, let me impress you with my <i>wunderbar</i> skills:</p>
+            <ul>
+                <li>"Hallo!" (See? Already fluent!)</li>
+                <li>"Danke!" (For your letter and for existing, obviously.)</li>
+                <li>Bitte, don’t laugh at my accent when we talk!</li>
+                <li>Und ja, I will keep learning more.</li>
+                <li>"Tschüss procrastination, ich lerne Deutsch!"</li>
+            </ul>
+            <p>Anyway, back to your letter. The picture you sent was truly <i>wunderschön!</i> It was awesome seeing you in action while we were shooting our film’s intro video in India. That was such a fun experience, and I’m glad we got to create something cool together!</p>
+            <p><b>Tschüss & Happy New Year 2025!</b></p>
+            <p>With love,<br>'A'</p>
         </div>
     </div>
 
     <script>
-        function toggleOpen() {
-            document.querySelector('.envelope').classList.toggle('open');
+        function openLetter() {
+            document.getElementById('letterModal').classList.add('show');
+        }
+
+        function closeLetter() {
+            document.getElementById('letterModal').classList.remove('show');
         }
     </script>
 </body>
